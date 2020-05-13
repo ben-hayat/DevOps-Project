@@ -1,6 +1,7 @@
 from GuessGame import GuessGame
 from MemoryGame import MemoryGame
 from CurrencyRouletteGame import CurrencyRouletteGame
+from Score import add_score
 
 def welcome(name):
     return "Hello {print_name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play\n".format(print_name=name)
@@ -29,7 +30,7 @@ def load_game():
         game = CurrencyRouletteGame(difficulty)
 
     if game.play():
-        print("Wow, Correct !")
+        print("Wow, Correct, your new score = {score} !".format(score=add_score(difficulty)))
     else:
         print("Nope, you are wrong !")
 
@@ -37,3 +38,5 @@ def debug ():
     n = input("Please insert name:")
     print(welcome(n))
     load_game()
+
+#debug()
