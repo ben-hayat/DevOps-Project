@@ -3,29 +3,46 @@ pipeline {
    stages {
       stage('Checkout') {
          steps {
-		 // should i cd to specific directory ?
-            bat 'git clone https://github.com/ben-hayat/DevOps-Project.git'
+			//bat 'echo skip clone until sucess'
+            bat 'git clone https://github.com/ben-hayat/DevOps-Project.git DevOps'
          }
       }
       stage ('Build') {
          steps {
-            bat 'docker build . -t flask_p'
+            bat 'docker build DevOps// -t flask_p'
          }
       }
       stage('Run') {
          steps {
-            bat 'docker-compose up -d'
+            dir ('DevOps') {
+                bat 'dir'
+                bat 'docker-compose up -d'
+            }
          }
       }
       stage('Test') {
          steps {
-            bat 'python tests\\ete.py'
+             dir ('DevOps\\tests') {
+                 bat 'dir'
+                 bat 'python e2e.py'
+             }
          }
       }
 	  stage('Finalize') {
          steps {
-            bat 'docker-compose dowb move'
+			dir ('DevOps') {
+				bat 'docker-compose down'
+			}
          }
       }
+   }
+   post {
+       always {
+		   dir ('DevOps') {
+				bat 'docker-compose down'
+				}
+		   //bat 'echo skip delete until sucess'
+           bat 'rmdir /s /q DevOps'
+       }
    }
 }
