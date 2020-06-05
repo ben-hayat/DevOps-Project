@@ -1,0 +1,2 @@
+docker build GitHub/DevOps-Project/ -t flask_p
+docker run -p 1112:5000 flask_p
