@@ -9,7 +9,7 @@ pipeline {
       }
       stage ('Build') {
          steps {
-            bat 'docker build GitHub/DevOps-Project/ -t flask_p'
+            bat 'docker build . -t flask_p'
          }
       }
       stage('Run') {
