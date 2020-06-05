@@ -3,7 +3,7 @@ pipeline {
    stages {
       stage('Checkout') {
          steps {
-		 # should i cd to specific directory ?
+		 // should i cd to specific directory ?
             bat 'git clone https://github.com/ben-hayat/DevOps-Project.git'
          }
       }
