@@ -29,7 +29,7 @@ def test_scores_service (app_url):
 #purpose: call our tests function.
 #output : return -1 as an OS exit code if the tests failed and 0 if they passed.
 def main_function ():
-    if test_scores_service("http://127.0.0.1:5000/") :
+    if test_scores_service("http://192.168.99.102:5000/"):
         return sys.exit(0)
     else:
         return sys.exit(-1)
